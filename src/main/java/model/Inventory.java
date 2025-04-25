@@ -11,11 +11,10 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class User {
-    private int id;
-    private String email;
-    private String password;
-    private String role; // Admin or Employee
-    private Timestamp createdAt;
-    private Timestamp updatedAt;
+public class Inventory {
+    private int inventoryId;
+    private int productId;
+    private int quantityAdded;
+    private String transactionType; // Stock In or Stock Out
+    private Timestamp transactionDate;
 }

@@ -13,14 +13,21 @@ public class DBConnection {
     @Getter
     private Connection connection;
 
-    private DBConnection() throws SQLException {
-        String URL = "jdbc:mysql://localhost:3306/clothify_store";
-        String user = "root";
-        String password = "1234";
-        connection = DriverManager.getConnection(URL,user,password);
+    // Database credentials
+    private static final String URL = "jdbc:mysql://localhost:3306/clothifystore";  // Replace with your DB URL
+    private static final String USER = "root";  // Replace with your DB username
+    private static final String PASSWORD = "1234";  // Replace with your DB password
+
+    private DBConnection(){
+        try {
+            connection = DriverManager.getConnection(URL, USER,PASSWORD);
+            System.out.println("Database connection successful.");
+        } catch (SQLException e) {
+            System.out.println("Database connection failed.");
+        }
     }
 
-    public static DBConnection getInstance() throws SQLException {
+    public static DBConnection getInstance(){
         return instance == null ? instance = new DBConnection() : instance;
     }
 }
