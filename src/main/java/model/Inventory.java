@@ -15,6 +15,6 @@ public class Inventory {
     private int inventoryId;
     private int productId;
     private int quantityAdded;
-    private String transactionType; // Stock In or Stock Out
+    private String transactionType;
     private Timestamp transactionDate;
 }

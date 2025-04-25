@@ -16,7 +16,7 @@ public class Order {
     private Timestamp orderDate;
     private int employeeId;
     private double totalCost;
-    private String paymentType; // Cash or Card
+    private String paymentType;
     private String customerEmail;
-    private String orderStatus; // Placed, Shipped, Delivered, Returned
+    private String orderStatus;
 }

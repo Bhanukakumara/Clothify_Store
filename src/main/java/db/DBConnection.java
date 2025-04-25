@@ -13,10 +13,9 @@ public class DBConnection {
     @Getter
     private Connection connection;
 
-    // Database credentials
-    private static final String URL = "jdbc:mysql://localhost:3306/clothifystore";  // Replace with your DB URL
-    private static final String USER = "root";  // Replace with your DB username
-    private static final String PASSWORD = "1234";  // Replace with your DB password
+    private static final String URL = "jdbc:mysql://localhost:3306/clothifystore";
+    private static final String USER = "root";
+    private static final String PASSWORD = "1234";
 
     private DBConnection(){
         try {

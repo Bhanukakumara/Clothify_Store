@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.admin.AdminDashboardController">
+   <children>
+      <Label layoutX="249.0" layoutY="40.0" text="Admin Dashboard" />
+      <Button layoutX="122.0" layoutY="126.0" mnemonicParsing="false" onAction="#handleCategoryManagement" text="Manage Categories" />
+      <Button layoutX="112.0" layoutY="178.0" mnemonicParsing="false" onAction="#handleUserManagement" text="Manage Users" />
+      <Button layoutX="129.0" layoutY="229.0" mnemonicParsing="false" onAction="#handleProductManagement" text="Manage Products" />
+   </children>
+</AnchorPane>
