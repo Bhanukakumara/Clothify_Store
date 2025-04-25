@@ -12,10 +12,7 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @ToString
 public class User {
-    private int id;
     private String email;
     private String password;
     private String role;
-    private Timestamp createdAt;
-    private Timestamp updatedAt;
 }
