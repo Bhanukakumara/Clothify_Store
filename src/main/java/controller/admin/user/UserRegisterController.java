@@ -11,8 +11,6 @@ import javafx.scene.control.TextField;
 import model.User;
 
 import java.net.URL;
-import java.sql.Timestamp;
-import java.util.Date;
 import java.util.ResourceBundle;
 
 public class UserRegisterController implements Initializable {
@@ -32,13 +30,13 @@ public class UserRegisterController implements Initializable {
                 txtPassword.getText(),
                 cmbRole.getValue().toString()
         );
-        AdminController adminController = new AdminController();
-        adminController.registerUser(user);
+        AdminService adminService = new AdminController();
+        adminService.registerUser(user);
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        cmbRole.getItems().addAll("Admin", "Manager", "Employee");
+        cmbRole.getItems().addAll("Admin", "Manager", "Customer");
     }
 
     public void btnRegisterOnAction(ActionEvent actionEvent) {

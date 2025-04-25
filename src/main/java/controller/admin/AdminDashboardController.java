@@ -22,8 +22,7 @@ public class AdminDashboardController {
 
     }
 
-    @FXML
-    void handleUserManagement(ActionEvent event) {
+    public void btnUserRegistrationOnAction(ActionEvent actionEvent) {
         try {
             stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/admin/user/userRegister.fxml"))));
             stage.show();
@@ -32,4 +31,30 @@ public class AdminDashboardController {
         }
     }
 
+    public void btnUserUpdateOnAction(ActionEvent actionEvent) {
+        try {
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/admin/user/userUpdate.fxml"))));
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void btnUserDeleteOnAction(ActionEvent actionEvent) {
+        try {
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/admin/user/userDelete.fxml"))));
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void btnUserSearchOnAction(ActionEvent actionEvent) {
+        try {
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/admin/user/userSearch.fxml"))));
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

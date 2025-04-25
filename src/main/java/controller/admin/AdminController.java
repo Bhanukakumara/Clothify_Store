@@ -11,7 +11,6 @@ import java.sql.*;
 import java.util.List;
 
 public class AdminController implements AdminService{
-
     @Override
     public boolean registerUser(User user) {
         try {
@@ -37,6 +36,16 @@ public class AdminController implements AdminService{
 
     @Override
     public boolean updateUser(User user) {
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM users WHERE email=" + "'" + user.getEmail() + "'");
+            if (resultSet.next()){
+
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         return false;
     }
 
