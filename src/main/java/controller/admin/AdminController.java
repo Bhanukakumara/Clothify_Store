@@ -38,15 +38,14 @@ public class AdminController implements AdminService{
     public boolean updateUser(User user) {
         try {
             Connection connection = DBConnection.getInstance().getConnection();
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM users WHERE email=" + "'" + user.getEmail() + "'");
-            if (resultSet.next()){
-
-            }
+            Statement statement = connection.prepareStatement("UPDATE users SET password=" + "'" + user.getPassword() + "', role =" + "'" + user.getRole() + "' WHERE email =" + "'" + user.getEmail() + "'");
+            statement.executeUpdate("UPDATE users SET password=" + "'" + user.getPassword() + "', role =" + "'" + user.getRole() + "' WHERE email =" + "'" + user.getEmail() + "'");
+            new Alert(Alert.AlertType.CONFIRMATION,"User Updated!").show();
+            return true;
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            new Alert(Alert.AlertType.WARNING,"User not updated!").show();
+            return false;
         }
-        return false;
     }
 
     @Override
