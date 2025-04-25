@@ -10,7 +10,7 @@ public interface AdminService {
 
     boolean registerUser(User user);
     boolean updateUser(User user);
-    boolean deleteUser(int id);
+    boolean deleteUser(String email);
     User getUserByEmail(String email);
     List<User> getAllUsers();
 

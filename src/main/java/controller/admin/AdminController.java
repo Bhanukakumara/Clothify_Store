@@ -50,12 +50,39 @@ public class AdminController implements AdminService{
     }
 
     @Override
-    public boolean deleteUser(int id) {
-        return false;
+    public boolean deleteUser(String email) {
+
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            Statement statement = connection.prepareStatement("DELETE FROM users WHERE email=" + "'" + email + "'");
+            statement.executeUpdate("DELETE FROM users WHERE email=" + "'" + email + "'");
+            new Alert(Alert.AlertType.CONFIRMATION,"User Deleted").show();
+            return true;
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.WARNING,"User not Deleted").show();
+            return false;
+        }
     }
 
     @Override
     public User getUserByEmail(String email) {
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM users WHERE email=" + "'" + email + "'");
+            if (resultSet.next()){
+                return new User(
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getString(4)
+                );
+            }
+            else {
+                new Alert(Alert.AlertType.CONFIRMATION,"User Not Found").show();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         return null;
     }
 

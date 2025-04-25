@@ -1,5 +1,7 @@
 package controller.admin.user;
 
+import controller.admin.AdminController;
+import controller.admin.AdminService;
 import db.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,12 +14,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.User;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-
 public class UserSearchController {
+
+    AdminService adminService = new AdminController();
 
     @FXML
     private TableColumn colEmail;
@@ -36,28 +35,21 @@ public class UserSearchController {
 
     @FXML
     void btnSearchOnAction(ActionEvent event) {
+        ObservableList<User> userObservableList = FXCollections.observableArrayList();
+        userObservableList.add(searchUser(txtEmail.getText()));
+        colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        colPassword.setCellValueFactory(new PropertyValueFactory<>("password"));
+        colRole.setCellValueFactory(new PropertyValueFactory<>("role"));
+        tblView.setItems(userObservableList);
 
-        try {
-            Connection connection = DBConnection.getInstance().getConnection();
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM users WHERE email=" + "'" + txtEmail.getText() + "'");
-            if (resultSet.next()){
-                ObservableList<User> userObservableList = FXCollections.observableArrayList();
-                userObservableList.add(new User(
-                        resultSet.getString(2),
-                        resultSet.getString(3),
-                        resultSet.getString(4)
-                ));
-                colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
-                colPassword.setCellValueFactory(new PropertyValueFactory<>("password"));
-                colRole.setCellValueFactory(new PropertyValueFactory<>("role"));
-                tblView.setItems(userObservableList);
-            }
-            else {
-                new Alert(Alert.AlertType.CONFIRMATION,"User Not Found").show();
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+    }
+
+    public User searchUser(String email){
+        return adminService.getUserByEmail(txtEmail.getText());
+    }
+
+    @FXML
+    void btnDeleteOnAction(ActionEvent actionEvent) {
+        adminService.deleteUser(txtEmail.getText());
     }
 }

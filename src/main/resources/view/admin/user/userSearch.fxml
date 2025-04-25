@@ -19,5 +19,6 @@
             <TableColumn fx:id="colRole" prefWidth="204.66668701171875" text="Role" />
         </columns>
       </TableView>
+      <Button layoutX="513.0" layoutY="313.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" text="Delete" />
    </children>
 </AnchorPane>
