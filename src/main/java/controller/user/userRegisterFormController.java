@@ -1,17 +1,22 @@
 package controller.user;
 
-import com.jfoenix.controls.JFXComboBox;
 import db.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import model.User;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.util.HashMap;
@@ -21,7 +26,7 @@ import java.util.ResourceBundle;
 public class userRegisterFormController implements Initializable {
 
     @FXML
-    public JFXComboBox cmbUserRole;
+    public ComboBox cmbUserRole;
 
     @FXML
     private PasswordField txtConfirmPassword;
@@ -97,5 +102,20 @@ public class userRegisterFormController implements Initializable {
         userRoleHashMap.put("Customer",2);
         ObservableList<String> userRoleObservableArrayList = FXCollections.observableArrayList(userRoleHashMap.keySet());
         cmbUserRole.setItems(userRoleObservableArrayList);
+    }
+
+    @FXML
+    public void btnLoginOnAction(ActionEvent actionEvent) {
+
+        try {
+            Stage stage = new Stage();
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/userLoginForm.fxml"))));
+            stage.show();
+            Stage curentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            curentStage.close();
+        } catch (IOException e) {
+            new Alert(Alert.AlertType.ERROR, "Failed to open Login Form!").show();
+        }
+
     }
 }
